@@ -1,48 +1,36 @@
-const { Activity, Country } = require("../db");
+const { createActivity, getAllActivities, getActivityByName } = require("../controllers/activitiesControllers");
 
-const createActivitiesHandlers = async (req, res) => {
-  try {
+//! Crear Actividad
+const createActivitiesHandler = async (req, res) => {
     const { name, difficulty, duration, season, countries } = req.body;
 
-    // Crea una nueva actividad en la base de datos
-    const newActivity = await Activity.create({
-      name,
-      difficulty,
-      duration,
-      season,
-    });
-
-    // Relaciona la actividad con los países indicados
-    if (countries && countries.length > 0) {
-      const associatedCountries = await Country.findAll({
-        where: { id: countries }, // Supongamos que "countries" es un arreglo de IDs de países
-      });
-
-      await newActivity.addCountries(associatedCountries);
-    }
-
-    res.status(201).json(newActivity);
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Error al crear la actividad.");
-  }
+    try {
+        const newActivity = await createActivity(name, difficulty, duration, season, countries);
+        res.status(200).json({ success: true, data: newActivity });
+    } catch (error) {
+        res.status(400).json({ success: false, message: "Error al crear nueva Actividad. " + error.message });
+    };
 };
 
-const getActivitiesHandlers = async (req, res) => {
-  try {
-    // Obtén todas las actividades de la base de datos, incluyendo los países relacionados
-    const activities = await Activity.findAll({
-      include: Country,
-    });
+//! Obtener todas las Actividades
+const getAllActivitiesHandler = async (req, res) => {
+    const { name } = req.query;
+    try {
+        if (name) {
+            const activityByName = await getActivityByName(name);
+            res.status(200).json(activityByName);
+        } else {
+            const response = await getAllActivities();
+            res.status(200).json(response);
+        }
+    }
+    catch (error) {
+        res.status(400).json({ error: error.message });
+    };
 
-    res.status(200).json(activities);
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Error al obtener las actividades.");
-  }
 };
 
 module.exports = {
-  createActivitiesHandlers,
-  getActivitiesHandlers
+    createActivitiesHandler,
+    getAllActivitiesHandler,
 };

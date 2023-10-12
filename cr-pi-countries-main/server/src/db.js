@@ -1,5 +1,5 @@
-require("dotenv").config();
 const { Sequelize } = require("sequelize");
+require("dotenv").config();
 
 const fs = require('fs');
 const path = require('path');
@@ -7,10 +7,17 @@ const {
   DB_USER, DB_PASSWORD, DB_HOST,
 } = process.env;
 
-const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/countries`, {
-  logging: false, 
-  native: false, 
+const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
+  dialect: "postgres",
+  host: process.env.DB_HOST,
+  port: 5432, // Puedes ajustar el puerto si es diferente
+  logging: false,
+  define: {
+    charset: "utf8", // Establecer la codificación aquí
+    collate: "utf8_general_ci", // Configurar el juego de caracteres y la clasificación
+  },
 });
+
 const basename = path.basename(__filename);
 
 const modelDefiners = [];
@@ -38,4 +45,4 @@ Activity.belongsToMany(Country, { through: 'Country_Activity' })
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
   conn: sequelize,     // para importart la conexión { conn } = require('./db.js');
-};
+};                         

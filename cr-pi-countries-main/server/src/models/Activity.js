@@ -5,18 +5,22 @@ module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('Activity', {
     id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        // allowNull: false,
-        autoIncrement: true,
+      type: DataTypes.UUID,
+      primaryKey: true,
+      allowNull: false,
+      defaultValue: DataTypes.UUIDV4,
     },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
     difficulty: {
-        type: DataTypes.ENUM('1', '2', '3', '4', '5'), //son strings
-        allowNull: false
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate:{
+          min:1,
+          max:5
+        }
     },
     duration:{
         type: DataTypes.INTEGER,

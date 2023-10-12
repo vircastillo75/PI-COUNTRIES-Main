@@ -1,63 +1,37 @@
-const { Op } = require("sequelize");
-const { Country, Activity } = require("../db");
+const { getCountryById, getAllCountries, getCountryByName } = require("../controllers/countriesControllers");
 
+// Obtener detalles de un País por ID
+const detailCountriesHandler = async (req, res) => {
+    const { idPais } = req.params; // Asegúrate de que el parámetro coincida con el ID de tres letras del país
+    try {
+        const response = await getCountryById(idPais);
+        res.status(200).json(response);
+    } catch (error) {
+        res.status(404).json({ error: error.message }); // Cambia el código de estado a 404 en caso de país no encontrado
+    }
+};
+
+// Obtener detalle de un País por Nombre / todos los Países
 const getCountriesHandler = async (req, res) => {
-  try {
-    const countries = await Country.findAll();
-    if (countries.length > 0) {
-      res.status(200).json(countries);
-    } else {
-      res.status(404).send("No se encontraron países en la base de datos.");
+    const { name } = req.query;
+    try {
+        if (name) {
+            const countryByName = await getCountryByName(name);
+            if (countryByName.length === 0) {
+                res.status(404).json({ message: "País no encontrado" });
+            } else {
+                res.status(200).json(countryByName);
+            }
+        } else {
+            const response = await getAllCountries();
+            res.status(200).json(response);
+        }
+    } catch (error) {
+        res.status(400).json({ error: error.message });
     }
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Error al obtener los países.");
-  }
-};
-
-const getCountriesByIdHandler = async (req, res) => {
-  const { idPais } = req.params;
-
-  try {
-    const country = await Country.findOne({
-      where: { id: idPais },
-      include: [{ model: Activity, attributes: ["name", "difficulty", "duration", "season"] }],
-    });
-
-    if (country) {
-      res.status(200).json(country);
-    } else {
-      res.status(404).send(`No se encontró el país con ID ${idPais}`);
-    }
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Error al obtener el detalle del país.");
-  }
-};
-
-const getCountriesByNameHandler = async (req, res) => {
-  const { name } = req.query;
-
-  try {
-    const countries = await Country.findAll({
-      where: {
-        name: { [Op.iLike]: `%${name}%` }, // Búsqueda insensible a mayúsculas y minúsculas
-      },
-    });
-
-    if (countries.length > 0) {
-      res.status(200).json(countries);
-    } else {
-      res.status(404).send(`No se encontraron países con el nombre "${name}".`);
-    }
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Error al buscar países por nombre.");
-  }
 };
 
 module.exports = {
-  getCountriesHandler,
-  getCountriesByIdHandler,
-  getCountriesByNameHandler,
+    detailCountriesHandler,
+    getCountriesHandler,
 };

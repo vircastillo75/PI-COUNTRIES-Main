@@ -1,12 +1,10 @@
 const { Router } = require("express");
+const { createActivitiesHandler, getAllActivitiesHandler } = require("../handlers/activitiesHandlers");
 
-const {createActivitiesHandlers, getActivitiesHandlers}= require("../handlers/activitiesHandlers");
+const activitiesRouter = Router(); // Creamos una instancia de Router
 
-const activitiesRouter = Router();
-
-activitiesRouter.post("/", createActivitiesHandlers );
-
-activitiesRouter.get("/", getActivitiesHandlers);
-
+// Definir rutas
+activitiesRouter.post("/", createActivitiesHandler); // Ruta para crear una nueva actividad turística
+activitiesRouter.get("/", getAllActivitiesHandler); // Ruta para obtener todas las actividades turísticas
 
 module.exports = activitiesRouter;
