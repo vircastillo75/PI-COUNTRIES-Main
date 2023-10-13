@@ -4,7 +4,13 @@ const { Op } = require("sequelize");
 // Obtener un País por ID
 const getCountryById = async (id) => {
     try {
-        const dbCountry = await Country.findByPk(id, {
+        // Convierte el ID proporcionado a mayúsculas y elimina espacios antes y después
+        const idUpper = id.trim().toUpperCase();
+
+        const dbCountry = await Country.findOne({
+            where: {
+                id: idUpper
+            },
             include: {
                 model: Activity,
                 attributes: ["name", "difficulty", "duration", "season"],
@@ -24,6 +30,7 @@ const getCountryById = async (id) => {
         throw new Error("Error al obtener el país: " + error.message);
     }
 };
+
 
 // Obtener todos los Países
 const getAllCountries = async () => {
