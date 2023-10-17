@@ -7,4 +7,5 @@ const activitiesRouter = Router(); // Creamos una instancia de Router
 activitiesRouter.post("/", createActivitiesHandler); // Ruta para crear una nueva actividad turística
 activitiesRouter.get("/", getAllActivitiesHandler); // Ruta para obtener todas las actividades turísticas
 
+
 module.exports = activitiesRouter;

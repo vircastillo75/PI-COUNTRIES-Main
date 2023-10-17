@@ -1,4 +1,4 @@
-const { getCountryById, getAllCountries, getCountryByName } = require("../controllers/countriesControllers");
+const { getCountryById, getAllCountries, getCountryByName } = require("../controllers/countriesController");
 
 // Obtener detalles de un País por ID
 const detailCountriesHandler = async (req, res) => {
@@ -31,7 +31,25 @@ const getCountriesHandler = async (req, res) => {
     }
 };
 
-module.exports = {
-    detailCountriesHandler,
-    getCountriesHandler,
+//! Obtener todos los países con actividades
+const getCountriesWithActivitiesHandler = async (req, res) => {
+    const { activityName } = req.query;
+    try {
+        if (activityName) {
+            const countryActivityByName = await getCountriesWithActivityByName(activityName);
+            res.status(200).json(countryActivityByName);
+        } else {
+            const response = await getAllCountriesWithActivities();
+            res.status(200).json(response);
+        }
+    }
+    catch (error) {
+        res.status(400).json({ error: error.message });
+    };
 };
+
+module.exports = {
+    getCountriesHandler,
+    detailCountriesHandler,
+    getCountriesWithActivitiesHandler,
+}

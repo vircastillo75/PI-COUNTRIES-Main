@@ -3,23 +3,18 @@ const { Activity } = require("../db");
 const { Op } = require('sequelize'); 
 
  
- 
+ //! Crear Actividad 
 
-//! Crear Actividad 
-
-const createActivity = async ( 
-
-    ) => { 
-
-    // Cambiamos 'name' en el where a ser insensible a mayúsculas/minúsculas 
-
-    const newActivity = await Activity.create({ name, difficulty, duration, season }); 
-
-    const countryActivity = await newActivity.addCountry(countries); 
-
-    return countryActivity; 
-
-}; 
+ const createActivity = async (name, difficulty, duration, season, countries) => {
+    // Cambiamos 'name' en el where a ser insensible a mayúsculas/minúsculas
+  
+    const newActivity = await Activity.create({ name, difficulty, duration, season });
+    
+    const countryActivity = await newActivity.addCountry(countries);
+    
+    return countryActivity;
+  };
+  
 
  
  
