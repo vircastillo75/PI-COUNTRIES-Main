@@ -7,7 +7,7 @@ export default function Landing() {
         <div className={style.page}>
             <div className={style.title}>
                 <h1>
-                    PROYECTO INDIVIDUAL ::: COUNTRIES
+                    COUNTRIES
                 </h1>
             </div>
             <div className={style.landingButton}>
