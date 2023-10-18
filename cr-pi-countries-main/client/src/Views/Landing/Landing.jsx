@@ -1,18 +1,18 @@
-import style from './Landing.module.css';
+import React from 'react';
+import styles from './Landing.module.css';
 import { Link } from 'react-router-dom';
 
 export default function Landing() {
 
     return (
-        <div className={style.page}>
-            <div className={style.title}>
-                <h1>
-                    COUNTRIES
-                </h1>
-            </div>
-            <div className={style.landingButton}>
-                <Link to='/home'>Enter</Link>
-            </div>
-        </div>
-    )
+        <div className={styles.Landing}>
+            <div className={styles.container}>
+            <h1>"PI Countries"</h1>
+        <div className={styles.space}></div> 
+        <Link to="/home">
+          <button>HOME</button>
+        </Link>
+      </div>
+    </div>
+  );
 }

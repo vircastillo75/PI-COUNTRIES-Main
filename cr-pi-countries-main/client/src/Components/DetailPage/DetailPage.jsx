@@ -2,7 +2,7 @@ import { getCountryDetail, disassembleDetail } from '../../Redux/Actions/actions
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom';
-import style from './DetailPage.module.css'
+import styles from './DetailPage.module.css'
 
 export default function Detail() {
    const { id } = useParams();
@@ -16,12 +16,12 @@ export default function Detail() {
 
    return (
       <div>
-         <div className={style.title}><h1>COUNTRY DETAIL</h1></div>
-         <div className={style.container}>
-            <div className={style.column}>
+         <div className={styles.title}><h1>COUNTRY DETAIL</h1></div>
+         <div className={styles.container}>
+            <div className={styles.column}>
                <img src={countryDetail.flag} alt={`${countryDetail.name} Flag`} />
             </div>
-            <div className={style.column2}>
+            <div className={styles.column2}>
                <h4>Country</h4>
                <h2>{countryDetail.name}</h2>
                <h4>International Code</h4>
@@ -37,7 +37,7 @@ export default function Detail() {
                <h4>Population</h4>
                <h2>{countryDetail.population}</h2>
             </div>
-            <div className={style.column3}>
+            <div className={styles.column3}>
                <h2>Activities:</h2>
                {countryDetail.Activities ? (
                   <ul>
@@ -58,8 +58,8 @@ export default function Detail() {
 
             </div>
          </div>
-         <div className={style.buttonContainer}>
-            <button className={style.backButton}>
+         <div className={styles.buttonContainer}>
+            <button className={styles.backButton}>
                <Link to='/home'>Back</Link>
             </button>
          </div>

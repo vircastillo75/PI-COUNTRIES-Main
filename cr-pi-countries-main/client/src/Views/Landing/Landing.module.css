@@ -1,49 +1,70 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600;800&display=swap');
-
-.page {
-    background-image: url('../../images/landingpage.jpg');
+body {
+    background-image: url(https://i.pinimg.com/originals/2f/90/a1/2f90a1f5cc13335232b9fb1dc9e8047c.jpg);
+    background-repeat: no-repeat;
     background-position: center;
+    background-attachment: fixed;
     background-size: cover;
-    min-height: 100vh;
+    margin: 0;
+    padding: 0;
     display: flex;
-    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
-    justify-content: center;
-}
-
-.title {
-    background-color: rgba(0, 51, 255, 0.77);
-    font-family: poppins;
-    border-radius: 10px;
-    padding: 20px;
-    display: inline-block;
-}
-
-.title h1 {
-    color: rgb(255, 255, 255);
-}
-
-.landingButton {
-    background-color: rgba(0, 51, 255, 0.77);
-    padding: 10px 20px;
+    height: 100vh;
+    
+  }
+  
+  
+  /* Estilos para el contenedor principal */
+  .LandingPage {
+    padding: 0;
+    margin: 0;
+  }
+  
+  /* Estilos para el contenedor interno */
+  .container {
+    
+      width: 80%;
+      max-width: 750px;
+      padding: 20px;
+      text-align: center;
+      border-radius: 50px;
+      margin: 70px;
+      background: rgba(225, 198, 165, 0.5); /* Color de fondo transparente */
+      height: auto;
+    
+  }
+  
+  
+  /* Estilos para el título h1 */
+  .container h1 {
+    padding: 10px;
+    margin-bottom: 70px; /* Espacio entre h1 y h3 */
+    color: #d08c60;
+    font-size:80px;
+    font-weight: bold;
+    text-shadow: 0 10px #ffcb69;
+  }
+  
+  /* Estilos para el botón */
+  .container button {
+    box-shadow: 0 14px 18px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 12px;
+    width: 200px;
+    height: 100px;
+    border: none;
+    outline: none;
+    background: #ffcb69;
+    color: #110808;
     cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-    font-family: poppins;
-    font-weight: 400;
-    display: inline-block;
-    margin-top: 40px;
-}
-
-.landingButton:hover {
-    background-color: #000000;
-    color: #ffffff;
-}
-
-.landingButton a {
-    text-decoration: none;
-    color: #ffffff;
-}
-
-.landingButton a:hover {
-    color: #ffffff;
-}
+    margin-top: 5px;
+    text-align: center;
+    font-size: 35px; /* Tamaño de fuente más grande */
+    font-weight: bold; /* Texto en negrita */
+  }
+  
+  
+  /* Estilos para el botón al pasar el mouse sobre él */
+  .container button:hover {
+    background: #d08c60;
+    transition: 0.1s;
+  }

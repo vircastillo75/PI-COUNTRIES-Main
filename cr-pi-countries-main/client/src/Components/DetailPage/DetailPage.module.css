@@ -2,7 +2,7 @@
 
 .container {
    font-family: 'poppins', sans-serif;
-   color: #2a68ff;
+   color: #e4b074;
    border: 1px solid #e1e1e1;
    border-radius: 12px;
    padding: 16px;
@@ -105,7 +105,7 @@ h2 {
 .backButton {
    font-family: 'poppins', sans-serif;
    font-size: large;
-   color: #2a68ff;
+   color: #f1dca7;
    background-color: #ffffff;
    padding: 10px 30px;
    border-radius: 10px;
