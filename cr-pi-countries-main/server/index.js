@@ -1,64 +1,36 @@
-const axios = require("axios"); 
+const axios = require("axios");
+const server = require("./src/server");
+const { conn, Country } = require('./src/db.js');
+const { cleanerApiInfo } = require("./src/utils/index");
+const API = "http://localhost:5000/countries";
+const PORT = 3001;
 
-const server = require("./src/app"); 
-
-const { conn, Country } = require("./src/db.js"); 
-
-const PORT = 3001; 
-
- 
- 
-
-conn 
-
-  .sync({ force: true }) 
-
-  .then(async () => { 
-
-    server.listen(PORT, async () => { 
-
-      const allCountries = await Country.findAll(); 
-
-      if (allCountries.length === 0) { // Verifica si la base de datos está vacía 
-
-        const { data } = await axios.get("http://localhost:5000/countries"); 
-
-        const countries = data.map((country) => {  
-
-          return { 
-
-            id: country.cca3, 
-
-            name: country.name.common ? country.name.common : country.name.official, 
-
-            flag: country.flags.svg, 
-
-            continent: country.continents && country.continents.length > 0 ? country.continents[0] : 'No proporcionado', 
-
-            capital: country.capital ? country.capital[0] : 'Capital doesnt exist', 
-
-            subregion: country.subregion, 
-
-            area: country.area, 
-
-            population: country.population, 
-
-          }; 
-
-        }); 
-
-         
-
-        await Country.bulkCreate(countries); 
-
-        console.log("Base de datos llena"); 
-
-      } 
-
-      console.log(`Server listening on port ${PORT}`); 
-
-    }); 
-
-  }) 
-
-  .catch((error) => console.error(error)); 
+conn.sync({ force: false }).then(async () => {
+  try {
+    server.listen(PORT, async () => {
+      try {
+        const countriesFromDB = await Country.findAll();
+        if (!countriesFromDB.length) {
+          const response = await axios.get(API);
+          const cleanResponse = cleanerApiInfo(response.data);
+          await Country.bulkCreate(cleanResponse);
+          console.log("The API information has been dumped in the local Database.");
+          
+          // Agregamos el mensaje de escucha del servidor aquí
+          console.log(`Server listening on port ${PORT}`);
+        } else {
+          console.log("The Database already contains API information.");
+          
+          // Agregamos el mensaje de escucha del servidor aquí
+          console.log(`Server listening on port ${PORT}`);
+        }
+      } catch (error) {
+        console.error("Error while fetching and processing API data:", error);
+      }
+    });
+  } catch (error) {
+    console.error("Error while starting the server:", error);
+  }
+}).catch(error => {
+  console.error("Error while syncing the database:", error);
+});

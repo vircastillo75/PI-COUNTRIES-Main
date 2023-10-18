@@ -1,48 +1,40 @@
-const { Sequelize } = require("sequelize");
-require("dotenv").config();
+require("dotenv").config(); //Dependencia para leer archivo .env
+const { Sequelize } = require("sequelize"); // Importar Sequelize para que JS interactue con la DDBB
 
+// Importar módulos de Node.js
 const fs = require('fs');
 const path = require('path');
-const {
-  DB_USER, DB_PASSWORD, DB_HOST,
-} = process.env;
-
-const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
-  dialect: "postgres",
-  host: process.env.DB_HOST,
-  port: 5432, // Puedes ajustar el puerto si es diferente
+const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
+const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/countries`, {
   logging: false,
-  define: {
-    charset: "utf8", // Establecer la codificación aquí
-    collate: "utf8_general_ci", // Configurar el juego de caracteres y la clasificación
-  },
+  native: false,
 });
-
+// Obtener el nombre del archivo actual
 const basename = path.basename(__filename);
-
+// Array para almacenar los modelos
 const modelDefiners = [];
-
+// Leer los archivos de modelos desde la carpeta correspondiente
 fs.readdirSync(path.join(__dirname, '/models'))
   .filter((file) => (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js'))
   .forEach((file) => {
     modelDefiners.push(require(path.join(__dirname, '/models', file)));
   });
 
-
+// Llamar a la función de cada modelo para definirlo en Sequelize
 modelDefiners.forEach(model => model(sequelize));
-
+// Modificar los nombres de los modelos para que empiecen con mayúscula
 let entries = Object.entries(sequelize.models);
 let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
 sequelize.models = Object.fromEntries(capsEntries);
-
+// Obtener el modelos desde sequelize
 const { Country, Activity } = sequelize.models;
 
-// Aca vendrian las relaciones
-// Product.hasMany(Reviews);
-Country.belongsToMany(Activity, { through: 'Country_Activity' })
-Activity.belongsToMany(Country, { through: 'Country_Activity' })
+// Aca vendrian las relaciones/asociaciones
+Country.belongsToMany(Activity, { through: 'Country_Activities' });
+Activity.belongsToMany(Country, { through: 'Country_Activities' });
 
+// Exportar los modelos y la conexión a la base de datos
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
   conn: sequelize,     // para importart la conexión { conn } = require('./db.js');
-};                         
+};

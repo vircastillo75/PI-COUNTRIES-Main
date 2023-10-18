@@ -1,17 +1,17 @@
-const { Country, Activity } = require("../db");
+const { Country, Activity, Country_Activities } = require("../db");
 const { Op } = require("sequelize");
+//const axios = require("axios");
 
+//! Crear un nuevo País
+const createCountry = async (id, name, flag, continent, capital, subregion, area, population) => {
+    return await Country.create({ id, name, flag, continent, capital, subregion, area, population });
+};
+
+//! Obtener un País por ID
 const getCountryById = async (id) => {
     try {
-        // Limpia el ID proporcionado, eliminando espacios antes y después
-        const cleanedId = id.trim();
-
         const dbCountry = await Country.findOne({
-            where: {
-                id: {
-                    [Op.iLike]: cleanedId // Utiliza Op.iLike para una búsqueda insensible a mayúsculas y minúsculas
-                }
-            },
+            where: { id },
             include: {
                 model: Activity,
                 attributes: ["name", "difficulty", "duration", "season"],
@@ -27,28 +27,26 @@ const getCountryById = async (id) => {
         } else {
             throw new Error("País no encontrado");
         }
-    } catch (error) {
-        throw  Error("Error al obtener el país: " + error.message);
+    }
+    catch (error) {
+        throw new Error("Error al obtener el país: " + error.message);
     }
 };
 
-
-
-// Obtener todos los Países
+//! Obtener todos los Países
 const getAllCountries = async () => {
     const dbCountry = await Country.findAll();
+
+    /*     const apiCountryResponse = (await axios.get("http://localhost:5000/countries/")).data;
+        const apiCountry = cleanerApiInfo(apiCountryResponse);
+        return [...dbCountry, ...apiCountry]; */
+
     return dbCountry;
 };
 
-// Obtener un País por Nombre (insensible a mayúsculas/minúsculas)
+//! Obtener un País por Nombre
 const getCountryByName = async (name) => {
-    const dbCountry = await Country.findAll({
-        where: {
-            name: {
-                [Op.iLike]: `%${name}%` // Búsqueda insensible a mayúsculas/minúsculas
-            }
-        }
-    });
+    const dbCountry = await Country.findAll({ where: { name: name } });
     return dbCountry;
 };
 
@@ -92,12 +90,10 @@ const getCountriesWithActivityByName = async (activityName) => {
 
 
 module.exports = {
+    createCountry,
     getCountryById,
     getAllCountries,
     getCountryByName,
     getAllCountriesWithActivities,
     getCountriesWithActivityByName,
-
-
-
 };
