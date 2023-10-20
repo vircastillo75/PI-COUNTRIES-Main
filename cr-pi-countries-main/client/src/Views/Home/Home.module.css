@@ -12,3 +12,15 @@ h1 {
     margin-bottom: 20px;
 }
 
+.homeContainer {
+    font-family: 'poppins', sans-serif;
+    text-align: center;
+    color:#e19765;
+    background-color: #90909025;
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+

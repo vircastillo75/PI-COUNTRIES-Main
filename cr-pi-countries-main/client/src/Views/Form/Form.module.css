@@ -11,7 +11,7 @@
 
 .formContainer {
     font-family: 'poppins', sans-serif;
-    color: #b5c99a;
+    color: #e79d3c;
     max-width: 400px;
     margin: 10px auto;
     padding: 20px;
@@ -25,7 +25,7 @@
 .formContainer input,
 .formContainer select {
     font-size: large;
-    color: #fcbf6e;
+    color: #e79d3c;
     border: solid 1px #b5c99a;
     border-radius: 12px;
     position: relative;
@@ -37,7 +37,7 @@
     font-family: 'poppins', sans-serif;
     font-size: large;
     background-color: #b5c99a;
-    color: #fff;
+    color: #d37b09;
     cursor: pointer;
     border: 0;
     padding: 5px 9px;

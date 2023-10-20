@@ -36,7 +36,7 @@ export default function Filters() {
 
    useEffect(() => {
       dispatch(getAllActivities());
-   }, [dispatch])
+   }, [dispatch]);
 
    const handleAllCountriesWithActivities = (event) => {
       const selectedActivity = event.target.value;
@@ -45,10 +45,17 @@ export default function Filters() {
    }
 
    const handleResetFilters = () => {
+      // Restablece los filtros y la página a sus valores iniciales
       dispatch(setFilteredCountries(countries));
+      dispatch(setNumPage(1));
+
+      // Restablece los valores de los selectores a sus opciones predeterminadas
+      document.querySelector('select[name="continent"]').value = 'All';
+      document.querySelector('select[name="activity"]').value = 'All';
    }
 
-   let values = allActivities.map(name => name.name);
+   // Verificar si allActivities es un array antes de usar .map
+   let values = Array.isArray(allActivities) ? allActivities.map(name => name.name) : [];
 
    const onlyValues = [...new Set(values)];
 

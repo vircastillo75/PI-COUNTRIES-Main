@@ -47,12 +47,19 @@ export default function CreateActivity() {
   const [selectedCountries, setSelectedCountries] = useState([]);
   
   const countryOptions = countries.map(country => ({
-    id: country.id,
+    id: country.id, // Asegúrate de que cada objeto de país tenga un id
     value: country.name,
   }));
 
   const handleCountrySelect = (selectedList) => {
+    const countryIds = selectedList.map(selected => selected.id);
     setSelectedCountries(selectedList);
+    
+    // Actualiza la propiedad countries del objeto activity
+    setActivity({
+      ...activity,
+      countries: countryIds,
+    });
   };
 
   const [activity, setActivity] = useState({
@@ -183,3 +190,4 @@ export default function CreateActivity() {
     </div >
   );
 }
+

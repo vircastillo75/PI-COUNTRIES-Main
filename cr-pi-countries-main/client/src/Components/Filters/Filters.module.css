@@ -19,7 +19,8 @@
     padding: 10px;
     border-radius: 12px;
     background: linear-gradient(to right, #56682c, #728740, #9bb55f);
-    color: #cea457; /* Cambia el color del texto a blanco */
+    color: #f6ba4b; /* Cambia el color del texto a blanco */
+    font-weight: bold;
     border: 0;
     cursor: pointer; /* Cambia el cursor al estilo de puntero al pasar el mouse sobre el select */
 }
@@ -30,7 +31,8 @@
     padding: 10px;
     border-radius: 12px;
     background: linear-gradient(to right, #56682c, #728740, #9bb55f);
-    color: #cea457; /* Cambia el color del texto a blanco */
+    color: #f6ba4b; /* Cambia el color del texto a blanco */
+    font-weight: bold;
     border: 0;
     cursor: pointer; /* Cambia el cursor al estilo de puntero al pasar el mouse sobre el select */
 }
@@ -43,7 +45,8 @@
     margin-right: 4px;
     border-radius: 12px;
     background: linear-gradient(to right, #56682c, #728740, #9bb55f); /* Define los colores del degradado */
-    color: #cea457;
+    color: #f6ba4b;
+    font-weight: bold;
     border: 0;
 }
 
