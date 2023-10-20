@@ -1,4 +1,4 @@
-const { createCountry, getCountryById, getAllCountries, getCountryByName, getAllCountriesWithActivities, getCountriesWithActivityByName, relateActivityToCountry } = require("../controllers/countriesController");
+const { getCountryById, getAllCountries, getCountryByName, getAllCountriesWithActivities, getCountriesWithActivityByName, relateActivityToCountry } = require("../controllers/countriesController");
 
 //! Obtener detalle de un País por Nombre / todos los Países
 const getCountriesHandler = async (req, res) => {
@@ -29,17 +29,6 @@ const detailCountriesHandler = async (req, res) => {
     }
 };
 
-//! Crear un nuevo País
-const createCountryHandler = async (req, res) => {
-    const { id, name, flag, continent, capital, subregion, area, population } = req.body;
-    try {
-        const response = await createCountry(id, name, flag, continent, capital, subregion, area, population);
-        res.status(200).json(response);
-    }
-    catch (error) {
-        res.status(400).json({ error: error.message });
-    }
-};
 
 //! Relacionar una actividad con un país
 const relateActivityToCountryHandler = async (req, res) => {
@@ -73,7 +62,6 @@ const getCountriesWithActivitiesHandler = async (req, res) => {
 module.exports = {
     getCountriesHandler,
     detailCountriesHandler,
-    createCountryHandler,
-    relateActivityToCountryHandler, // Agregada la función aquí
+    relateActivityToCountryHandler, 
     getCountriesWithActivitiesHandler,
 };

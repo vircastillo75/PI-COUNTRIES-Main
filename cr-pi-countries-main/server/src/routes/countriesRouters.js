@@ -5,7 +5,6 @@ const countriesRouter = Router(); // Cambiamos el nombre a countriesRouter para 
 const {
     getCountriesHandler,
     detailCountriesHandler,
-    createCountryHandler,
     getCountriesWithActivitiesHandler,
     relateActivityToCountryHandler,
 } = require("../handlers/countriesHandlers");
@@ -16,8 +15,6 @@ countriesRouter.get("/", getCountriesHandler);
 // Ruta para obtener todos los países con actividades o buscar un país por ID
 countriesRouter.get("/activities", getCountriesWithActivitiesHandler);
 
-// Ruta para crear un nuevo país
-countriesRouter.post("/", createCountryHandler);
 
 // Ruta para obtener detalles de un país por ID
 countriesRouter.get("/:id", detailCountriesHandler);

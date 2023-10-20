@@ -4,10 +4,6 @@ const { Op, Sequelize } = require("sequelize");
 // Función para eliminar espacios y convertir a minúsculas
 const formatIdentifier = (identifier) => identifier.toLowerCase().replace(/\s/g, "");
 
-//! Crear un nuevo País
-const createCountry = async (id, name, flag, continent, capital, subregion, area, population) => {
-    return await Country.create({ id, name, flag, continent, capital, subregion, area, population });
-};
 
 //! Obtener un País por ID
 const getCountryById = async (id) => {
@@ -138,7 +134,7 @@ const relateActivityToCountry = async (countryId, activityId) => {
 
 
 module.exports = {
-    createCountry,
+  
     getCountryById,
     getAllCountries,
     getCountryByName,

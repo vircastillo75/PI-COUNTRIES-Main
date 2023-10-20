@@ -1,5 +1,5 @@
 const { Activity } = require("../db"); // importamos modelo
-const { op } = require('sequelize');
+const { Op } = require('sequelize');
 
 //! Crear Actividad
 const createActivity = async (name, difficulty, duration, season, countries) => {

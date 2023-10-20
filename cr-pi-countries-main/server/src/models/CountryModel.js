@@ -12,6 +12,7 @@ module.exports = (sequelize) => {
     id: {
       type: DataTypes.STRING, // (3)Define el tipo de dato como una cadena de longitud 3
       primaryKey: true,
+      unique:true,
       allowNull: false, // No permite valores nulos
       /*validate: {
         is: /^[A-Za-z]{3}$/ // Expresión regular para tres letras (mayúsculas o minúsculas)
