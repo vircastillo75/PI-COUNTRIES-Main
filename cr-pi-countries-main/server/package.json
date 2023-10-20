@@ -1,14 +1,14 @@
 {
-  "name": "server",
+  "name": "pi_countries",
   "version": "1.0.0",
-  "description": "Server Proyecto Individual",
+  "description": "Proyecto Individual Countries",
   "main": "index.js",
   "scripts": {
     "server": "nodemon index.js",
     "api": "echo 'Local API listening on PORT 5000' & json-server --watch api/db.json -p 5000 -q",
     "start": "concurrently \"npm run server\" \"npm run api\""
   },
-  "author": "",
+  "Author": "María Virignia Castillo",
   "license": "ISC",
   "dependencies": {
     "axios": "^1.4.0",
@@ -22,6 +22,6 @@
     "npm-run-all": "^4.1.5",
     "pg": "^8.10.0",
     "pg-hstore": "^2.3.4",
-    "sequelize": "^6.31.1"
+    "sequelize": "^6.32.1"
   }
 }

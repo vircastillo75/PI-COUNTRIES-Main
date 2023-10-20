@@ -1,11 +1,29 @@
 const { Router } = require("express");
 
-const countriesRouters = Router(); // Creamos una instancia de Router
+const countriesRouter = Router(); // Cambiamos el nombre a countriesRouter para mayor consistencia
 
-const { getCountriesHandler, detailCountriesHandler,  getCountriesWithActivitiesHandler } = require("../handlers/countriesHandlers");
+const {
+    getCountriesHandler,
+    detailCountriesHandler,
+    createCountryHandler,
+    getCountriesWithActivitiesHandler,
+    relateActivityToCountryHandler,
+} = require("../handlers/countriesHandlers");
 
-countriesRouters.get("/", getCountriesHandler);
-countriesRouters.get("/activities", getCountriesWithActivitiesHandler);
-countriesRouters.get("/:id", detailCountriesHandler);
+// Ruta para obtener todos los países o buscar un país por nombre
+countriesRouter.get("/", getCountriesHandler);
 
-module.exports = countriesRouters; // Exportamos el router configurado
+// Ruta para obtener todos los países con actividades o buscar un país por ID
+countriesRouter.get("/activities", getCountriesWithActivitiesHandler);
+
+// Ruta para crear un nuevo país
+countriesRouter.post("/", createCountryHandler);
+
+// Ruta para obtener detalles de un país por ID
+countriesRouter.get("/:id", detailCountriesHandler);
+
+// Ruta para relacionar una actividad con un país
+countriesRouter.post("/relateActivityToCountry", relateActivityToCountryHandler);
+
+
+module.exports = countriesRouter; // Exportamos el router configurado

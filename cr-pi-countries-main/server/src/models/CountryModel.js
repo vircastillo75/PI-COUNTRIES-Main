@@ -1,16 +1,16 @@
 const { DataTypes } = require('sequelize');
-
 // Función para capitalizar palabras del Atributo Nombre
 function capitalizeWords(str) {
   return str.toLowerCase().replace(/\b\w/g, (char) => char.toUpperCase());
 };
 
-// Exportamos una función que define el modelo y luego le inyectamos la conexión a Sequelize.
+// Exportamos una funcion que define el modelo
+// Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
-  // Defino el modelo
-  const Country = sequelize.define("Country", {
+  // defino el modelo
+  sequelize.define("Country", {
     id: {
-      type: DataTypes.STRING, // Define el tipo de dato como una cadena de longitud 3
+      type: DataTypes.STRING, // (3)Define el tipo de dato como una cadena de longitud 3
       primaryKey: true,
       allowNull: false, // No permite valores nulos
       /*validate: {
@@ -19,7 +19,7 @@ module.exports = (sequelize) => {
     },
     name: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     flag: {
       type: DataTypes.STRING,
@@ -45,9 +45,7 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-  }, {
-    timestamps: false,
-  });
-
-  
+  },
+    { timestamps: false },
+  );
 };

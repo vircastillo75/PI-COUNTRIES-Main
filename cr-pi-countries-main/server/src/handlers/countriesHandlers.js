@@ -1,4 +1,4 @@
-const { createCountry, getCountryById, getAllCountries, getCountryByName, getAllCountriesWithActivities, getCountriesWithActivityByName } = require("../controllers/countriesController");
+const { createCountry, getCountryById, getAllCountries, getCountryByName, getAllCountriesWithActivities, getCountriesWithActivityByName, relateActivityToCountry } = require("../controllers/countriesController");
 
 //! Obtener detalle de un País por Nombre / todos los Países
 const getCountriesHandler = async (req, res) => {
@@ -14,8 +14,7 @@ const getCountriesHandler = async (req, res) => {
     }
     catch (error) {
         res.status(400).json({ error: error.message });
-    };
-
+    }
 };
 
 //! Obtener detalles de un País por ID
@@ -26,7 +25,7 @@ const detailCountriesHandler = async (req, res) => {
         res.status(200).json(response);
     }
     catch (error) {
-        res.status(400).json({ error: error.message })
+        res.status(400).json({ error: error.message });
     }
 };
 
@@ -34,11 +33,23 @@ const detailCountriesHandler = async (req, res) => {
 const createCountryHandler = async (req, res) => {
     const { id, name, flag, continent, capital, subregion, area, population } = req.body;
     try {
-        const response = await createCountry(id, name, flag, continent, capital, subregion, area, population)
-        res.status(200).json(response)
+        const response = await createCountry(id, name, flag, continent, capital, subregion, area, population);
+        res.status(200).json(response);
     }
     catch (error) {
-        res.status(400).json({ error: error.message }) // El error que me de la conexión
+        res.status(400).json({ error: error.message });
+    }
+};
+
+//! Relacionar una actividad con un país
+const relateActivityToCountryHandler = async (req, res) => {
+    const { countryId, activityId } = req.body;
+    try {
+        const response = await relateActivityToCountry(countryId, activityId);
+        res.status(200).json({message: response});
+    }
+    catch (error) {
+        res.status(400).json({ error: error.message });
     }
 };
 
@@ -56,12 +67,13 @@ const getCountriesWithActivitiesHandler = async (req, res) => {
     }
     catch (error) {
         res.status(400).json({ error: error.message });
-    };
+    }
 };
 
 module.exports = {
     getCountriesHandler,
     detailCountriesHandler,
     createCountryHandler,
+    relateActivityToCountryHandler, // Agregada la función aquí
     getCountriesWithActivitiesHandler,
 };

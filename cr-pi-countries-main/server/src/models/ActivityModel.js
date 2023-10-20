@@ -1,13 +1,13 @@
 const { DataTypes } = require("sequelize");
-
 module.exports = (sequelize) => {
-    const Activity = sequelize.define("Activity", {
+    // Defino el modelo
+    sequelize.define("Activity", {
         id: {
-            type: DataTypes.UUID,
-            defaultValue: DataTypes.UUIDV4,
+            type: DataTypes.INTEGER,
             primaryKey: true,
-            allowNull: false,
-        },
+            autoIncrement: true,
+            allowNull: false
+          },
         name: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -23,14 +23,13 @@ module.exports = (sequelize) => {
         duration: {
             type: DataTypes.INTEGER,
             allowNull: false,
+           
         },
         season: {
             type: DataTypes.ENUM('Summer', 'Autumn', 'Winter', 'Spring'),
             allowNull: false,
         },
-    }, {
-        timestamps: false
-    });
-
-  
+    },
+        { timestamps: false }
+    );
 };
