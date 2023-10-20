@@ -4,7 +4,7 @@ import { setFilteredCountries, getAllActivities, getAllCountriesWithActivities, 
 import styles from './Filters.module.css';
 
 const continentOptions = [
-   { value: 'All', label: 'All countries' },
+   { value: 'All', label: 'All Continents' },
    { value: 'Africa', label: 'Africa' },
    { value: 'Antarctica', label: 'Antarctica' },
    { value: 'Asia', label: 'Asia' },

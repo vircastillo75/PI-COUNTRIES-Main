@@ -1,17 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600;800&display=swap');
+
 
 .catcher input {
     font-family: 'poppins', sans-serif;
-    color: #2a68ff;
+    color: #ddb892;
     font-size: x-large;
-
+    text-align: center; /* Para centrar el texto en el input */
+    background-color: #e8c9ab; /* Cambia el color de fondo del input */
+    color: #7f5539; /* Cambia el color del texto del input */
 }
 
-.buttonSearch {
-    font-family: 'poppins', sans-serif;
-    font-weight: 600;
-    color: #2a68ff;
-    border-radius: 6px;
-    background-color: #ffffff;
-    padding: 0 18px;
+.catcher input::placeholder {
+    color: #7f5539; /* Cambia el color del marcador de posición (placeholder) */
 }

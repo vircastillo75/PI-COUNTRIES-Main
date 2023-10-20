@@ -3,7 +3,7 @@
 .homeContainer {
     font-family: 'poppins', sans-serif;
     text-align: center;
-    color: #2a68ff;
+    color:#e19765;
     background-color: #90909025;
 }
 
@@ -12,11 +12,3 @@ h1 {
     margin-bottom: 20px;
 }
 
-.image {
-    background-image: url('../../images/mapamundi.gif');
-    width: 50px;
-    height: 50px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-}

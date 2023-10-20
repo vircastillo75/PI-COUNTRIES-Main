@@ -6,17 +6,44 @@
 }
 
 .container h4 {
-    margin: 0;
+    margin: 5px;
     padding: 10px;
+    color: #407603; /* Cambia el color de texto a tu preferencia, por ejemplo, rojo */
+    font-size: 20px; /* Cambia el tamaño de la fuente a tu preferencia, por ejemplo, 24px */
+    font-weight: bold;
 }
 
-.container select,
+/* Estilo para el selector "All Activities" */
+.container select[name="activity"] {
+    margin: 5px;
+    padding: 10px;
+    border-radius: 12px;
+    background: linear-gradient(to right, #56682c, #728740, #9bb55f);
+    color: #cea457; /* Cambia el color del texto a blanco */
+    border: 0;
+    cursor: pointer; /* Cambia el cursor al estilo de puntero al pasar el mouse sobre el select */
+}
+
+/* Estilo para el selector "All Continents" */
+.container select[name="continent"] {
+    margin: 5px; /* Agrega separación arriba y abajo */
+    padding: 10px;
+    border-radius: 12px;
+    background: linear-gradient(to right, #56682c, #728740, #9bb55f);
+    color: #cea457; /* Cambia el color del texto a blanco */
+    border: 0;
+    cursor: pointer; /* Cambia el cursor al estilo de puntero al pasar el mouse sobre el select */
+}
+
+
+/* Estilo para el botón "Reset Filters" */
 .container button {
-    margin: 0;
+    margin:5px;
     padding: 10px;
     margin-right: 4px;
     border-radius: 12px;
-    background-color: #2a68ff;
-    color: white;
+    background: linear-gradient(to right, #56682c, #728740, #9bb55f); /* Define los colores del degradado */
+    color: #cea457;
     border: 0;
 }
+

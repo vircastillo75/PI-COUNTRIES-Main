@@ -1,6 +1,7 @@
 import axios from "axios";
 import { ActionTypes } from './actionTypes';
 
+// Acción para obtener todos los países
 export const getAllCountries = () => async (dispatch) => {
    try {
       const { data } = await axios.get("http://localhost:3001/countries");
@@ -10,6 +11,7 @@ export const getAllCountries = () => async (dispatch) => {
    }
 };
 
+// Acción para obtener los detalles de un país por su ID
 export const getCountryDetail = (id) => async (dispatch) => {
    try {
       const { data } = await axios.get(`http://localhost:3001/countries/${id}`);
@@ -19,19 +21,25 @@ export const getCountryDetail = (id) => async (dispatch) => {
    }
 };
 
+// Acción para limpiar la lista de países
 export const disassembleCountries = () => ({ type: ActionTypes.DISASSEMBLE_COUNTRIES });
 
+// Acción para limpiar los detalles de un país
 export const disassembleDetail = () => ({ type: ActionTypes.DISASSEMBLE_DETAIL });
 
+// Acción para avanzar a la siguiente página
 export const nextPage = () => ({ type: ActionTypes.NEXT_PAGE });
 
+// Acción para retroceder a la página anterior
 export const prevPage = () => ({ type: ActionTypes.PREV_PAGE });
 
+// Acción para establecer el número de página
 export const setNumPage = (pageNumber) => ({
    type: ActionTypes.SET_NUM_PAGE,
    payload: pageNumber
 });
 
+// Acción para obtener un país por su ID
 export const getCountryById = (id) => async (dispatch) => {
    try {
       const { data } = await axios.get(`http://localhost:3001/countries/${id}`);
@@ -41,6 +49,7 @@ export const getCountryById = (id) => async (dispatch) => {
    }
 };
 
+// Acción para obtener países por su nombre
 export const getCountryByName = (name) => async (dispatch) => {
    try {
       const lowerCaseName = name.toLowerCase();
@@ -53,6 +62,7 @@ export const getCountryByName = (name) => async (dispatch) => {
    }
 };
 
+// Acción para crear una actividad
 export const postActivities = (createActivity) => async (dispatch) => {
    try {
       const response = await axios.post("http://localhost:3001/activities", createActivity);
@@ -62,6 +72,7 @@ export const postActivities = (createActivity) => async (dispatch) => {
    }
 };
 
+// Acción para obtener todas las actividades
 export const getAllActivities = () => async (dispatch) => {
    try {
       const response = await axios.get("http://localhost:3001/activities");
@@ -73,6 +84,7 @@ export const getAllActivities = () => async (dispatch) => {
    }
 };
 
+// Acción para obtener países con actividades relacionadas
 export const getAllCountriesWithActivities = (activityName = null) => async (dispatch) => {
    try {
       const response = await axios.get("http://localhost:3001/countries/activities");
@@ -91,12 +103,42 @@ export const getAllCountriesWithActivities = (activityName = null) => async (dis
    }
 };
 
+// Acción para establecer países filtrados
 export const setFilteredCountries = (filteredCountries) => ({
    type: ActionTypes.SET_FILTERED_COUNTRIES,
    payload: filteredCountries
 });
 
+// Acción para establecer la opción de ordenamiento
 export const setSortOption = (sortOption) => ({
    type: ActionTypes.SET_SORT_OPTION,
    payload: sortOption
 });
+
+// Acción para relacionar una actividad con un país
+export const relateActivityToCountry = (countryId, activityId) => async (dispatch) => {
+   try {
+      const response = await axios.post('http://localhost:3001/relateActivityToCountry', {
+         countryId,
+         activityId
+      });
+
+      if (response.status === 200) {
+         // Despachar una acción de éxito con los IDs del país y la actividad
+         dispatch({
+            type: ActionTypes.RELATE_ACTIVITY_TO_COUNTRY,
+            payload: {
+               countryId,
+               activityId
+            }
+         });
+      } else {
+         // Despachar una acción de error si es necesario
+         dispatch({ type: ActionTypes.RELATE_ACTIVITY_ERROR, payload: 'Error en la solicitud' });
+      }
+   } catch (error) {
+      console.log(error);
+      // Manejar errores o despachar una acción de error si es necesario
+      dispatch({ type: ActionTypes.RELATE_ACTIVITY_ERROR, payload: error.message });
+   }
+};
