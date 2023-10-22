@@ -1,0 +1,78 @@
+/* About.module.css */
+
+.box {
+    /* Estilos para el contenedor principal */
+    display: flex;
+    justify-content: flex-start; /* Alinea el contenido a la parte superior derecha */
+    align-items: flex-start; /* Alinea el contenido a la parte superior derecha */
+    background-size: cover;
+    min-height: 80vh;
+   
+}
+
+.container {
+    /* Estilos para el contenedor secundario */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Alinea el contenido en la parte superior */
+    align-items: flex-start; /* Alinea el contenido a la parte superior derecha */
+    width: 800px; /* Reduzco el ancho del contenedor */
+    background-color:#ede0d4;
+    border:color(from color srgb r g b);
+    border-radius: 3em;
+    box-shadow: 20px 20px 30px rgb(243, 138, 89);
+    margin: 8em; /* Reduzco el margen */
+}
+
+
+.tittle {
+    /* Estilos para el título */
+    color: #87986a;
+    font-size: 3em;
+    font-weight: bold;
+    margin-bottom: 0.5em; /* Reduzco el margen inferior del título */
+    text-align: center;
+    margin-left: 25px;
+    text-shadow: 0 5px rgb(243, 138, 89);
+}
+
+.subtittle {
+    /* Estilos para el subtítulo */
+    font-size: 2.5em;
+    text-align: center;
+    color: #87986a;
+    text-shadow: 0 0 30px rgb(243, 138, 89);
+}
+
+.description {
+    /* Estilos para la descripción */
+    font-size: 1.5em;
+    text-align: center;
+    color: rgb(244, 96, 28);
+    margin-bottom: 1em;
+    margin-left: 2em; /* Agrego margen izquierdo */
+    margin-right: 2em; ; /* Agrego un margen inferior a la descripción */
+}
+
+/* About.module.css */
+
+/* ... Otros estilos ... */
+
+.buttonContainer {
+    text-align: center; /* Alinea el botón al centro del contenedor */
+}
+
+.buttonContainer button {
+    background-color: #87986a; /* Color de fondo del botón */
+    color: #fff; /* Color del texto del botón */
+    padding: 10px 20px; /* Espaciado interno del botón */
+    font-size: 1.5em; /* Tamaño de fuente del botón */
+    border: none; /* Elimina el borde del botón */
+    border-radius: 8px; /* Agrega bordes redondeados */
+    cursor: pointer; /* Cambia el cursor al pasar por encima del botón */
+    transition: background-color 0.3s; /* Agrega una transición al color de fondo */
+}
+
+.buttonContainer button:hover {
+    background-color: #d9ae94; /* Cambia el color de fondo al pasar el cursor por encima */
+}

@@ -13,6 +13,9 @@ export default function NavBar() {
       <button className={style.navButton}>
         <Link to='/'>Landing</Link>
       </button>
+      <button className={style.navButton}>
+        <Link to='/about'>About</Link>
+      </button>
     </div>
   );
 }

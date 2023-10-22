@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSortOption } from '../../Redux/Actions/actions';
+import { setSortOption, setFilteredCountries, setNumPage } from '../../Redux/Actions/actions';
 import styles from './Sorting.module.css';
 
 const sortingOptions = [
@@ -15,18 +15,27 @@ export default function Sorting() {
    const countries = useSelector(state => state.allCountriesCopy);
 
    const handleSortChange = (sortOption) => {
+      let sortedCountries = [...countries]; // Clonar el array original
 
       if (sortOption === 'ASC') {
-         countries.sort((a, b) => a.name.localeCompare(b.name));
+         sortedCountries.sort((a, b) => a.name.localeCompare(b.name));
       } else if (sortOption === 'DESC') {
-         countries.sort((a, b) => b.name.localeCompare(a.name));
+         sortedCountries.sort((a, b) => b.name.localeCompare(a.name));
       } else if (sortOption === 'MORE') {
-         countries.sort((a, b) => a.population - b.population);
+         sortedCountries.sort((a, b) => a.population - b.population);
       } else if (sortOption === 'LESS') {
-         countries.sort((a, b) => b.population - a.population);
+         sortedCountries.sort((a, b) => b.population - a.population);
       }
 
       dispatch(setSortOption(sortOption));
+      dispatch(setFilteredCountries(sortedCountries)); // Enviar el array ordenado
+      dispatch(setNumPage(1));
+   };
+
+   const handleReset = () => {
+      dispatch(setSortOption('')); // Restablecer la opción de clasificación
+      dispatch(setFilteredCountries(countries));
+      dispatch(setNumPage(1));
    };
 
    return (
@@ -41,6 +50,7 @@ export default function Sorting() {
                {option.label}
             </button>
          ))}
+         <button onClick={handleReset}>Reset</button>
       </div>
    );
 }
