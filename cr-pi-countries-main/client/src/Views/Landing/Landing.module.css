@@ -29,7 +29,7 @@ body {
       text-align: center;
       border-radius: 50px;
       margin: 70px;
-      background: rgba(225, 198, 165, 0.5); /* Color de fondo transparente */
+      background: rgba(232, 207, 176, 0.5); /* Color de fondo transparente */
       height: auto;
     
   }
@@ -54,7 +54,7 @@ body {
     border: none;
     outline: none;
     background: #ffcb69;
-    color: #110808;
+    color: #718355;
     cursor: pointer;
     margin-top: 5px;
     text-align: center;

@@ -26,7 +26,6 @@ export default function SearchBar() {
 
    return (
       <div>
-         {/* <label htmlFor="searchInput">Search your Country: </label> */}
          <div className={style.catcher}>
             <input
                type="text"
@@ -34,6 +33,7 @@ export default function SearchBar() {
                value={name}
                onChange={handleInputChange}
                placeholder="Search your Country"
+               autoComplete="off" // Desactivar el autocompletado
             />
             {name && (
                <button onClick={handleClearClick} style={{ marginLeft: '10px' }}>

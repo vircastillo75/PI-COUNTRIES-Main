@@ -1,0 +1,48 @@
+/* Paginated.module.css */
+
+/* Contenedor principal del componente */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  /* Estilo para el texto "Page: X/X" */
+  .pageText {
+    font-size: 20px;
+    color: #407603;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  /* Contenedor para los botones de navegación */
+  .buttonContainer {
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Estilo para los botones "Prev" y "Next" */
+  .button {
+    font-size: 14px;
+    padding: 8px 16px;
+    margin: 0 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: linear-gradient(to right, #56682c, #728740, #9bb55f);
+    color: #f1dca7;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  /* Estilo para el botón "Prev" cuando está deshabilitado */
+  .button[disabled='true'] {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  /* Estilo para el botón "Prev" cuando está habilitado */
+  .button:not([disabled='true']):hover {
+    background-color: #0056b3;
+  }
+  

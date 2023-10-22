@@ -16,9 +16,10 @@
 /* Estilo para el selector "All Activities" */
 .container select[name="activity"] {
     margin: 5px;
-    padding: 10px;
+    padding: 12px;
     border-radius: 12px;
     background: linear-gradient(to right, #56682c, #728740, #9bb55f);
+    font-size: 16px;
     color: #f6ba4b; /* Cambia el color del texto a blanco */
     font-weight: bold;
     border: 0;
@@ -31,6 +32,7 @@
     padding: 10px;
     border-radius: 12px;
     background: linear-gradient(to right, #56682c, #728740, #9bb55f);
+    font-size: 16px;
     color: #f6ba4b; /* Cambia el color del texto a blanco */
     font-weight: bold;
     border: 0;
