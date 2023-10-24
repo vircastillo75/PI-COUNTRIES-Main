@@ -12,7 +12,7 @@ export default function SearchBar() {
    }
 
    const handleInputChange = (event) => {
-      const searchText = event.target.value;
+      const searchText = event.target.value.trim().toLowerCase(); // Elimina espacios al principio y al final y convierte a minúsculas
       setName(searchText);
       dispatch(getCountryByName(searchText));
       handlePageChange(1);
@@ -33,7 +33,7 @@ export default function SearchBar() {
                value={name}
                onChange={handleInputChange}
                placeholder="Search your Country"
-               autoComplete="off" // Desactivar el autocompletado
+               autoComplete="off"
             />
             {name && (
                <button onClick={handleClearClick} style={{ marginLeft: '10px' }}>

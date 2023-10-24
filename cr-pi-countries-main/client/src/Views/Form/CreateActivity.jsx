@@ -52,10 +52,10 @@ export default function CreateActivity() {
   }));
 
   const handleCountrySelect = (selectedList) => {
-    const countryIds = selectedList.map(selected => selected.id);
     setSelectedCountries(selectedList);
-    
+
     // Actualiza la propiedad countries del objeto activity
+    const countryIds = selectedList.map(selected => selected.id);
     setActivity({
       ...activity,
       countries: countryIds,
@@ -94,6 +94,13 @@ export default function CreateActivity() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    // Validar que la duración esté entre 1 y 99
+    if (activity.duration < 1 || activity.duration > 99) {
+      alert("Duration must be between 1 and 99.");
+      return;
+    }
+
     if (selectedCountries.length === 0) {
       alert("Select at least one country");
       return;
@@ -151,7 +158,7 @@ export default function CreateActivity() {
 
           <div>
             <label className={style.formLabel} htmlFor="duration">Duration in hours: </label>
-            <input onChange={handleChange} type="text" id='duration' value={activity.duration} />
+            <input onChange={handleChange} type="number" id='duration' value={activity.duration} />
             {errors.duration ? <label className={style.errorMessage}>{errors.duration}</label> : null}
           </div>
 
@@ -190,4 +197,3 @@ export default function CreateActivity() {
     </div >
   );
 }
-
