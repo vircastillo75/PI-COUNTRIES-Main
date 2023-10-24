@@ -2,10 +2,9 @@ const { Country, Activity, Country_Activities } = require("../db");
 const { Op, Sequelize } = require("sequelize");
 
 // Función para eliminar espacios y convertir a minúsculas
-const formatIdentifier = (identifier) => identifier.toLowerCase().replace(/\s/g, "");
+const formatIdentifier = (identifier) => identifier.trim().toLowerCase();
 
-
-//! Obtener un País por ID
+// Obtener un país por ID
 const getCountryById = async (id) => {
     try {
         const dbCountry = await Country.findOne({
@@ -23,36 +22,33 @@ const getCountryById = async (id) => {
         if (dbCountry) {
             return dbCountry;
         } else {
-            throw  Error("País no encontrado");
+            throw Error("País no encontrado");
         }
     } catch (error) {
-        throw  Error("Error al obtener el país: " + error.message);
+        throw Error("Error al obtener el país: " + error.message);
     }
 };
 
-//! Obtener todos los Países
+// Obtener todos los países
 const getAllCountries = async () => {
     const dbCountry = await Country.findAll();
     return dbCountry;
 };
 
-//! Obtener un País por Nombre
+// Obtener un país por nombre
 const getCountryByName = async (name) => {
-    const formattedName = name.trim(); // Eliminar espacios antes y después del nombre
-    console.log("Nombre formateado:", formattedName); // Agregado para depuración
+    const formattedName = formatIdentifier(name);
     const dbCountry = await Country.findAll({
         where: {
             name: {
-                [Op.iLike]: `%${formattedName}%`, // Búsqueda insensible a mayúsculas y minúsculas
+                [Op.iLike]: `%${formattedName}%`
             }
         }
     });
-    console.log("Resultados de la búsqueda:", dbCountry); // Agregado para depuración
     return dbCountry;
 };
 
-
-//! Obtener Países con al menos una Actividad
+// Obtener países con al menos una actividad
 const getAllCountriesWithActivities = async () => {
     const countriesWithActivities = await Country.findAll({
         include: [
@@ -71,7 +67,7 @@ const getAllCountriesWithActivities = async () => {
     return countriesWithActivities;
 };
 
-//! Obtener Países con una Actividad específica
+// Obtener países con una actividad específica por nombre
 const getCountriesWithActivityByName = async (activityName) => {
     const countriesWithSpecificActivity = await Country.findAll({
         include: [
@@ -81,7 +77,7 @@ const getCountriesWithActivityByName = async (activityName) => {
                 through: { attributes: ["CountryId", "ActivityId"] },
                 where: {
                     name: {
-                        [Op.iLike]: formatIdentifier(activityName) // "iLike" para consulta insensible a mayúsculas y minúsculas
+                        [Op.iLike]: formatIdentifier(activityName)
                     }
                 }
             }
@@ -90,14 +86,11 @@ const getCountriesWithActivityByName = async (activityName) => {
     return countriesWithSpecificActivity;
 };
 
-//! Relacionar una actividad con un país
+// Relacionar una actividad con un país
 const relateActivityToCountry = async (countryId, activityId) => {
     try {
-        // Convertir y formatear los identificadores a minúsculas y sin espacios
         const formattedCountryId = formatIdentifier(countryId);
         const formattedActivityId = formatIdentifier(activityId);
-
-        // Verificar si el país y la actividad existen (ignorando mayúsculas y espacios)
         const country = await Country.findOne({
             where: {
                 [Op.and]: [
@@ -116,10 +109,9 @@ const relateActivityToCountry = async (countryId, activityId) => {
         });
 
         if (!country || !activity) {
-            throw  Error("País o actividad no encontrada");
+            throw Error("País o actividad no encontrada");
         }
 
-        // Relacionar la actividad con el país en la tabla intermedia
         await Country_Activities.create({
             CountryId: country.id,
             ActivityId: activity.id
@@ -127,18 +119,18 @@ const relateActivityToCountry = async (countryId, activityId) => {
 
         return "Actividad relacionada exitosamente con el país.";
     } catch (error) {
-        throw  Error("Error al relacionar actividad con país: " + error.message);
+        throw Error("Error al relacionar actividad con país: " + error.message);
     }
 };
 
 
 
 module.exports = {
-  
     getCountryById,
     getAllCountries,
     getCountryByName,
     getAllCountriesWithActivities,
     getCountriesWithActivityByName,
-    relateActivityToCountry 
+    relateActivityToCountry,
+ 
 };
