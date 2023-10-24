@@ -1,4 +1,5 @@
-const { Country, Activity } = require('../src/db');
+
+const { Country } = require('../src/db');
 
 describe('Country Model', () => {
   beforeAll(async () => {
