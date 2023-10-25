@@ -69,22 +69,24 @@ const getAllCountriesWithActivities = async () => {
 
 // Obtener países con una actividad específica por nombre
 const getCountriesWithActivityByName = async (activityName) => {
+    const formattedActivityName = formatIdentifier(activityName);
     const countriesWithSpecificActivity = await Country.findAll({
         include: [
             {
                 model: Activity,
                 attributes: ["name", "difficulty", "duration", "season"],
-                through: { attributes: ["CountryId", "ActivityId"] },
-                where: {
-                    name: {
-                        [Op.iLike]: formatIdentifier(activityName)
-                    }
-                }
+                through: { attributes: ["CountryId", "ActivityId"] }
             }
-        ]
+        ],
+        where: {
+            "$Activities.name$": {
+                [Op.iLike]: `%${formattedActivityName}%`
+            }
+        }
     });
     return countriesWithSpecificActivity;
 };
+
 
 // Relacionar una actividad con un país
 const relateActivityToCountry = async (countryId, activityId) => {
