@@ -1,17 +1,30 @@
-const request = require('supertest');
-const app = require('../src/server');// Importa la aplicación de tu servidor (donde configuraste tus rutas)
+// db.test.js
+const { Country, Activity, conn } = require('../src/db');
 
-describe('API Routes', () => {
-  it('should get a list of countries', async () => {
-    const response = await request(app).get('/countries'); // Realiza una solicitud GET a la ruta /countries
-    expect(response.status).toBe(200);
+describe('Database Configuration', () => {
+  beforeAll(async () => {
+    await conn.sync({ force: true });
   });
 
-
-  it('should get a list of activities', async () => {
-    const response = await request(app).get('/activities'); // Realiza una solicitud GET a la ruta /activities
-    expect(response.status).toBe(200); // Verifica que la respuesta tenga un código de estado 200
+  it('should define the Country and Activity models', () => {
+    expect(Country).toBeDefined();
+    expect(Activity).toBeDefined();
   });
-  
 
+  it('should establish the relationship between Country and Activity', () => {
+    // Verifica las relaciones entre los modelos
+    const associations = Object.keys(Country.associations);
+
+    expect(associations.includes('Activities')).toBe(true);
+    expect(Country.associations.Activities.target).toBe(Activity);
+
+    const activityAssociations = Object.keys(Activity.associations);
+
+    expect(activityAssociations.includes('Countries')).toBe(true);
+    expect(Activity.associations.Countries.target).toBe(Country);
+  });
+
+  afterAll(async () => {
+    await conn.close();
+  });
 });
