@@ -125,7 +125,41 @@ const relateActivityToCountry = async (countryId, activityId) => {
     }
 };
 
+/*// Obtener países por nombre y actividades con filtrado opcional por actividad
+const getCountriesWithFilter = async (name, activityName = null) => {
+    const formattedName = formatIdentifier(name);
+    const filter = {
+        name: {
+            [Op.iLike]: `%${formattedName}%`
+        }
+    };
 
+    if (activityName) {
+        const formattedActivityName = formatIdentifier(activityName);
+        const activityFilter = {
+            name: {
+                [Op.iLike]: `%${formattedActivityName}%`
+            }
+        };
+
+        const countries = await Country.findAll({
+            where: filter,
+            include: [
+                {
+                    model: Activity,
+                    where: activityFilter,
+                    attributes: ["name", "difficulty", "duration", "season"],
+                    through: { attributes: ["CountryId", "ActivityId"] }
+                }
+            ]
+        });
+
+        return countries;
+    } else {
+        const countries = await Country.findAll({ where: filter });
+        return countries;
+    }
+};*/
 
 module.exports = {
     getCountryById,
@@ -134,5 +168,6 @@ module.exports = {
     getAllCountriesWithActivities,
     getCountriesWithActivityByName,
     relateActivityToCountry,
+    // getCountriesWithFilter,
  
 };

@@ -1,4 +1,5 @@
 const { getCountryById, getAllCountries, getCountryByName, getAllCountriesWithActivities, getCountriesWithActivityByName, relateActivityToCountry, } = require("../controllers/countriesController");
+//const { getCountriesWithFilter } = require("../controllers/countriesController");
 
 //! Obtener detalle de un País por Nombre / todos los Países
 const getCountriesHandler = async (req, res) => {
@@ -59,10 +60,26 @@ const getCountriesWithActivitiesHandler = async (req, res) => {
         res.status(400).json({ error: error.message });
     }
 };
+/*const getCountriesHandler = async (req, res) => {
+    const { name, activity } = req.query; //  agregar un nuevo parámetro "activity" a la solicitud GET
+    try {
+        if (name) {
+            const countryByName = await getCountriesWithFilter(name, activity); // Utiliza getCountriesWithFilter con los parámetros de filtrado
+            res.status(200).json(countryByName);
+        } else {
+            const response = await getAllCountries();
+            res.status(200).json(response);
+        }
+    }
+    catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+};*/
 
 module.exports = {
     getCountriesHandler,
     detailCountriesHandler,
     relateActivityToCountryHandler,
     getCountriesWithActivitiesHandler,
+    
 };
