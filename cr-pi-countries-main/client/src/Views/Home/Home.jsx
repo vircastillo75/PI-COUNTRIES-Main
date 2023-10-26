@@ -5,7 +5,8 @@ import style from './Home.module.css'
 export default function home() {
     return (
         <div className={style.homeContainer}>
-            <h1>PI  COUNTRIES</h1>
+            <h1>Home Countries</h1>
+           
             <NavBar />
             <Cards />
         </div>
