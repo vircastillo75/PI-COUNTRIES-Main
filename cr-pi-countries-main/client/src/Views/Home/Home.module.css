@@ -1,19 +1,52 @@
+/* Home.module.css */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600;800&display=swap');
 
-
 .homeContainer {
-    font-family: 'poppins', sans-serif;
-    text-align: center;
-    color:#d08c60; 
-   
-   
+  font-family: 'Poppins', sans-serif;
+  color: #d08c60;
+  min-height: 100vh;
+  background-image: url('https://i.pinimg.com/originals/2f/90/a1/2f90a1f5cc13335232b9fb1dc9e8047c.jpg');
+  background-size: cover; /* La imagen se estira para cubrir toda la pantalla */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* Fija la imagen de fondo */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 130px; /* Espacio adicional para la NavBar */
+}
+
+/* Aumenta el margen inferior de la NavBar */
+.NavBar {
+  margin-bottom: 100px; /* Espacio de separación entre NavBar y filterSortContainer */
+  z-index: 1000; /* Asegurar que la NavBar esté por encima de otros elementos */
+}
+
+.filterSortContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 200px; /* Aumentado el espacio adicional entre NavBar y filterSortContainer */
+  gap: 20px; /* Espacio entre Sorting y Filters */
+  border: 5px solid #56682c; /* Agregar un borde para visualización */
+  border-radius: 12px; /* Añadir bordes redondeados */
+  padding: 15px; /* Agregar relleno */
+}
+
+.content {
+  text-align: center;
+  width: 100%;
+  max-width: 1200px; /* Para centrar y limitar el ancho máximo */
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.446); /* Fondo semitransparente para mejorar legibilidad */
+  border-radius: 12px;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 h1 {
-    font-size: 2rem;
-    margin-bottom: 15px;
-    text-shadow: 0 10px #ffcb69;
+  font-size: 2rem;
+  margin-bottom: 15px;
+  text-shadow: 0 10px #ffcb69;
 }
-
-
-
