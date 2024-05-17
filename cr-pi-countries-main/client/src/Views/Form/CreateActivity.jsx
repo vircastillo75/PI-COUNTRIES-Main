@@ -186,12 +186,13 @@ export default function CreateActivity() {
               onSelect={handleCountrySelect}
               onRemove={handleCountrySelect}
               placeholder="Select countries"
+              style={{multiselectContainer: {width: '90%', margin: 'auto'}, searchBox: {fontSize: 'large'}, inputField: {fontSize: 'large'}}}
             />
             {errors.countries ? <label className={style.errorMessage}>{errors.countries}</label> : null}
           </div>
           <br />
-          <button type='submit'>Create activity</button>
-          <Link to='/home'>Cancel</Link>
+          <button type='submit' className={style.bold}>Create activity</button>
+          <Link to='/home' className={style.bold}>Cancel</Link>
         </form>
       </div >
     </div >

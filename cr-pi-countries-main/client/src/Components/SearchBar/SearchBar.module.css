@@ -4,6 +4,7 @@
     font-family: 'poppins', sans-serif;
     color: #ddb892;
     font-size: x-large;
+    /*font-weight: bold;*/
     text-align: center; /* Para centrar el texto en el input */
     background-color: #e8c9ab; /* Cambia el color de fondo del input */
     color: #7f5539; /* Cambia el color del texto del input */

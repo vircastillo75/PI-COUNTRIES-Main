@@ -1,23 +1,47 @@
-/* Estilos generales para el formulario */
 .head {
+    /*background-image: url(https://i.pinimg.com/originals/2f/90/a1/2f90a1f5cc13335232b9fb1dc9e8047c.jpg);*/
+    background-size: cover; /* Esto hace que la imagen cubra todo el contenedor */
+    background-position: center; /* Esto centra la imagen */
+    background-repeat: no-repeat; /* Esto evita que la imagen se repita */
     background-color: #b5c99a;
     border-radius: 12px;
     text-align: center;
     font-family: 'poppins', sans-serif;
-    color: #e9f5db;
-    margin: auto 40px;
-    padding: 10px 0;
+    
+    color: #bc8032;
+    margin: 30px auto 0; /* Ajuste del margen superior */
+    padding: 5px 0 10px; /* Ajuste del espacio interno, con menos padding superior */
+   }   
+
+.head h1 {
+    text-shadow: none; /* Elimina la sombra del h1 */
+}
+
+.bold {
+    font-weight: bold; /* Añade negrita */
+}
+
+.successMessage {
+    font-family: 'poppins', sans-serif;
+    font-weight: bold;
+    color: #ffffff;
+    max-width: 420px;
+    margin: 10px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    background-color: rgba(0, 128, 0, 0.505);
+    text-align: center;
 }
 
 .formContainer {
     font-family: 'poppins', sans-serif;
     color: #e79d3c;
     max-width: 400px;
-    margin: 10px auto;
+    margin: 5px auto;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 12px;
-    box-shadow: 10px 12px 14px rgba(0, 0, 0, 0.524);
     background-color: #f9f9f9;
     border: 12px #b5c99a solid;
 }
@@ -33,7 +57,7 @@
     padding: 9px;
 }
 
-.formContainer button {
+.formContainer button, .formContainer a {
     font-family: 'poppins', sans-serif;
     font-size: large;
     background-color: #b5c99a;
@@ -44,21 +68,13 @@
     border-radius: 12px;
     margin-right: 5px;
     margin-top: 10px;
+    transition: background-color 0.3s, color 0.3s; /* Agrega una transición suave */
 }
 
-.formContainer a,
-.formContainer a:hover {
-    text-decoration: none;
-    color: inherit;
+.formContainer button:hover, .formContainer a:hover {
+    background-color: #97a97c; /* Cambia el color de fondo al pasar el cursor */
+    color: #ffffff; /* Cambia el color del texto al pasar el cursor */
 }
-
-.formContainer button:hover {
-    background-color: #ffffff;
-    color: #97a97c;
-    border: 2px solid #97a97c;
-}
-
-
 
 /* Estilos para los mensajes de error */
 .errorMessage {
@@ -71,35 +87,4 @@
 .formLabel {
     font-weight: bold;
     padding: 10px;
-}
-
-/* Estilos para contenedor de botones */
-.buttonContainer {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 15px;
-}
-
-.select {
-    display: flex;
-    padding: 2px;
-    font-size: 12px;
-    position: relative;
-    width: 50%;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-bottom: 10px;
-}
-
-.successMessage {
-    font-family: 'poppins', sans-serif;
-    font-weight: bold;
-    color: #ffffff;
-    max-width: 420px;
-    margin: 10px auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 12px;
-    background-color: rgba(0, 128, 0, 0.505);
-    text-align: center;
 }

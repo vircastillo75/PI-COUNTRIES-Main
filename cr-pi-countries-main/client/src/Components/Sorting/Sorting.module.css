@@ -20,5 +20,6 @@
     border-radius: 12px;
     background: linear-gradient(to right, #56682c, #728740, #9bb55f); /* Define los colores del degradado */
     color: white;
+    font-weight: bold;
     border: 0;
 }
