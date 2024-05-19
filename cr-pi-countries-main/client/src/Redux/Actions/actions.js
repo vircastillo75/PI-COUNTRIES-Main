@@ -57,6 +57,7 @@ export const getCountryByName = (name) => async (dispatch) => {
       const filterCountry = response.data.filter(country =>
          country.name.toLowerCase().includes(lowerCaseName));
       dispatch({ type: ActionTypes.GET_COUNTRIES_BY_NAME, payload: filterCountry });
+      dispatch(setNumPage(1)); // Resetear la página a 1 después de una búsqueda
    } catch (error) {
       dispatch({ type: "ERROR_OCCURRED", payload: error.message });
    }
@@ -98,6 +99,7 @@ export const getAllCountriesWithActivities = (activityName = null) => async (dis
          });
          dispatch({ type: ActionTypes.GET_ALL_COUNTRIES_WITH_ACTIVITIES, payload: filtered });
       }
+      dispatch(setNumPage(1)); // Resetear la página a 1 después de filtrar
    } catch (error) {
       console.log(error);
    }

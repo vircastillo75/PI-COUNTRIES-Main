@@ -36,7 +36,8 @@ const reducer = (state = initialState, { type, payload }) => {
     case ActionTypes.GET_COUNTRIES_BY_NAME:
       return {
         ...state,
-        allCountriesCopy: payload
+        allCountriesCopy: payload,
+        numPage: 1 // Resetear la página a 1 después de una búsqueda
       };
     case ActionTypes.NEXT_PAGE:
       return {
@@ -72,6 +73,7 @@ const reducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         allCountriesCopy: payload,
+        numPage: 1 // Resetear la página a 1 después de filtrar
       };
     case ActionTypes.SET_NUM_PAGE:
       return {
@@ -105,4 +107,3 @@ const reducer = (state = initialState, { type, payload }) => {
 };
 
 export default reducer;
-

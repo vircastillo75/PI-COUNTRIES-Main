@@ -1,27 +1,23 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { getCountryByName, setNumPage } from '../../Redux/Actions/actions'
+import { getCountryByName } from '../../Redux/Actions/actions';
 import style from './SearchBar.module.css';
 
-export default function SearchBar() {
+export default function SearchBar({ onSearchResult }) {
    const dispatch = useDispatch();
    const [name, setName] = useState('');
 
-   const handlePageChange = () => {
-      dispatch(setNumPage(1));
-   }
-
    const handleInputChange = (event) => {
-      const searchText = event.target.value.trim().toLowerCase(); // Elimina espacios al principio y al final y convierte a minúsculas
+      const searchText = event.target.value.trim().toLowerCase();
       setName(searchText);
-      dispatch(getCountryByName(searchText));
-      handlePageChange(1);
+      const result = searchText ? dispatch(getCountryByName(searchText)) : [];
+      onSearchResult(result); // Llama a la función onSearchResult con el resultado de la búsqueda
    };
 
    const handleClearClick = () => {
       setName('');
       dispatch(getCountryByName(''));
-      handlePageChange(1);
+      onSearchResult([]); // Llama a la función onSearchResult con un array vacío para borrar los resultados de la búsqueda
    };
 
    return (
@@ -44,3 +40,5 @@ export default function SearchBar() {
       </div>
    );
 }
+
+

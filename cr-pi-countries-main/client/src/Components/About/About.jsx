@@ -1,6 +1,7 @@
+// About.js
 import React from 'react';
 import styles from './About.module.css';
-import { Link } from 'react-router-dom'; // Importa Link desde react-router-dom
+import { Link } from 'react-router-dom';
 
 function About() {
   return (

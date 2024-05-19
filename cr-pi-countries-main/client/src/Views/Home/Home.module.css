@@ -12,14 +12,20 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 130px; /* Espacio adicional para la NavBar */
+    padding-top: 180px; /* Espacio adicional para la NavBar */
     width: 100%; /* Asegura que el contenedor ocupe todo el ancho */
 }
 
 .NavBar {
-    margin-bottom: 100px; /* Espacio de separación entre NavBar y filterSortContainer */
     z-index: 1000; /* Asegurar que la NavBar esté por encima de otros elementos */
     width: 100%; /* Asegura que la NavBar ocupe todo el ancho */
+    box-sizing: border-box; /* Incluye el padding en el cálculo del ancho */
+    display: flex;
+    justify-content: center; /* Centra la NavBar */
+    position: fixed; /* Fija la NavBar en la parte superior */
+    top: 0; /* Posición en la parte superior de la página */
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo semitransparente */
+    padding: 20px; /* Relleno interno */
 }
 
 .filterSortContainer {
@@ -27,8 +33,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    margin-top: 200px; /* Aumentado el espacio adicional entre NavBar y filterSortContainer */
-    margin-left: 20px; /* Margen izquierdo ajustado */
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan */
     gap: 20px; /* Espacio entre Sorting y Filters */
     border: 5px solid #56682c; /* Agregar un borde para visualización */
     border-radius: 12px; /* Añadir bordes redondeados */
@@ -36,6 +41,7 @@
     background: rgba(255, 255, 255, 0.7); /* Fondo semitransparente */
     width: calc(100% - 40px); /* Asegura que el contenedor ocupe todo el ancho menos el padding */
     box-sizing: border-box; /* Incluye el padding en el cálculo del ancho */
+    margin: 250px auto 50px auto; /* Espacio superior para separarlo de la NavBar y centrarlo */
 }
 
 .content {
@@ -45,7 +51,7 @@
     margin: 0 auto;
     background: rgba(255, 255, 255, 0.446); /* Fondo semitransparente para mejorar legibilidad */
     border-radius: 12px;
-    padding: 20px;
+    padding: 10px;
     box-sizing: border-box;
 }
 

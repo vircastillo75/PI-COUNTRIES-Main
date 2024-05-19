@@ -34,11 +34,15 @@ body {
 .container h1 {
   padding: 10px;
   margin-bottom: 70px; /* Espacio entre h1 y h3 */
-  color: #d08c60;
+  color: #c76524;
   font-size: 80px;
   font-weight: bold;
   font-family: 'Poppins', sans-serif; /* Ajustar la fuente */
   line-height: 1; /* Ajustar la altura de línea para evitar caracteres adicionales */
+}
+
+.title {
+  text-shadow: none !important; /* Eliminar sombra de texto */
 }
 
 /* Estilos para el botón */

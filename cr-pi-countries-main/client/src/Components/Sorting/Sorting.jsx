@@ -13,7 +13,8 @@ const sortingOptions = [
 
 export default function Sorting() {
   const dispatch = useDispatch();
-  const countries = useSelector(state => state.allCountriesCopy);
+  const allCountries = useSelector(state => state.allCountries); // All countries without filtering
+  const countries = useSelector(state => state.allCountriesCopy); // Filtered or sorted countries
 
   const handleSortChange = (sortOption) => {
     let sortedCountries = [...countries];
@@ -35,7 +36,7 @@ export default function Sorting() {
 
   const handleReset = () => {
     dispatch(setSortOption(''));
-    dispatch(setFilteredCountries(countries));
+    dispatch(setFilteredCountries(allCountries)); // Use allCountries to reset
     dispatch(setNumPage(1));
   };
 

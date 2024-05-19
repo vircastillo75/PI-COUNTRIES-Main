@@ -9,7 +9,7 @@
     margin: 0;
     padding: 10px;
     color: #407603; /* Cambia el color de texto a tu preferencia, por ejemplo, rojo */
-    font-size: 20px; /* Cambia el tamaño de la fuente a tu preferencia, por ejemplo, 24px */
+    font-size: 22px; /* Cambia el tamaño de la fuente a tu preferencia, por ejemplo, 24px */
     font-weight: bold
 }
 
@@ -19,7 +19,8 @@
     margin-right: 4px;
     border-radius: 12px;
     background: linear-gradient(to right, #56682c, #728740, #9bb55f); /* Define los colores del degradado */
-    color: #f2bb4d;
+    color: #f0c117;
     font-weight: bold;
+    font-size: medium;
     border: 0;
 }
